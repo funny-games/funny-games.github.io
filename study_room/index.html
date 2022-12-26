@@ -18,16 +18,26 @@
     <body onload="setData()">
         <div class="leveltime">
             <input type="button" id="timer_start" value=" スタート ">
-            <input type="button" id="timer_end" value=" ストップ ">
+            <input type="button" id="timer_end" value=" ストップ " onclick="timer_stop()">
             <input type="button" id="save" value=" セーブする ">
             <input type="button" id="reset" value=" リセットする ">
             <br>
             <p>level</p><input type="button" id="level" value="">
             <p>study time</p><input type="button" id="time" value="">
             <script>
+                //それぞれのデータとタイマーカウントの定義
                 var save_data = new Array(0,0);
-                let a = 0;
+                var stop = 0;
+                const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
+                //sleep関数の作成
+                function sleep(waitMsec) {
+                    var startMsec = new Date();
+
+                    while (new Date() - startMsec < waitMsec);
+                }
+
+                //データのセット
                 function setData(){
                     var cdata = localStorage.getItem("clear");
 
@@ -39,22 +49,37 @@
                     document.getElementById("time").value = save_data[1];
                 }
 
-                document.getElementById("timer_start").addEventListener("click",function(){
-                    save_data[1] += 1;
+                function timer_stop(){
+                    stop = 1;
+                }
 
-                    document.getElementById("time").value = save_data[1];
-                });
+                //もしスタートボタンが押されたら
+                document.getElementById("timer_start").addEventListener("click",async function(){
+                    stop = 0;
+                    
+                    while(stop < 1){
+                        await _sleep(1000);
 
+                        save_data[1] = save_data[1] + 1;
+
+                        document.getElementById("time").value = save_data[1];
+                    }
+                },false);
+
+                //もしセーブボタンが押されたら
                 document.getElementById("save").addEventListener("click",function(){
                     localStorage.setItem("clear",JSON.stringify(save_data));
                 },false);
 
+                //もしリセットボタンが押されたら
                 document.getElementById("reset").addEventListener("click",function(){
                     for(var i=0;i<2;i++){
                         save_data[i] = 0;
                     }
 
                     localStorage.setItem("clear",JSON.stringify(save_data));
+
+                    stop = 0;
 
                     setData();
                 },false);
