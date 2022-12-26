@@ -17,8 +17,8 @@
     </head>
     <body onload="setData()">
         <div class="leveltime">
-            <input type="button" id="timer_start" value=" スタート ">
-            <input type="button" id="timer_end" value=" ストップ " onclick="timer_stop()">
+            <input type="button" id="start" value=" スタート " onclick="timer_start()">
+            <input type="button" id="end" value=" ストップ " onclick="timer_stop()">
             <input type="button" id="save" value=" セーブする ">
             <input type="button" id="reset" value=" リセットする ">
             <br>
@@ -53,18 +53,28 @@
                     stop = 1;
                 }
 
+                function level_up(){
+                    if((save_data[1] % 10) == 0){
+                        save_data[0] += 1;
+                    }
+
+                    document.getElementById("level").value = save_data[0];
+                }
+
                 //もしスタートボタンが押されたら
-                document.getElementById("timer_start").addEventListener("click",async function(){
+                async function timer_start(){
                     stop = 0;
-                    
+
                     while(stop < 1){
                         await _sleep(1000);
 
                         save_data[1] = save_data[1] + 1;
 
                         document.getElementById("time").value = save_data[1];
+
+                        level_up();
                     }
-                },false);
+                };
 
                 //もしセーブボタンが押されたら
                 document.getElementById("save").addEventListener("click",function(){
@@ -73,9 +83,8 @@
 
                 //もしリセットボタンが押されたら
                 document.getElementById("reset").addEventListener("click",function(){
-                    for(var i=0;i<2;i++){
-                        save_data[i] = 0;
-                    }
+                    save_data[0] = 1;
+                    save_data[1] = 0;
 
                     localStorage.setItem("clear",JSON.stringify(save_data));
 
