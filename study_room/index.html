@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>study room</title>
+        <style>
+            .leveltime{
+                height: 10em;
+                position: relative;
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%)
+            }
+        </style>
+    </head>
+    <body onload="setData()">
+        <div class="leveltime">
+            <input type="button" id="timer_start" value=" スタート ">
+            <input type="button" id="timer_end" value=" ストップ ">
+            <input type="button" id="save" value=" セーブする ">
+            <input type="button" id="reset" value=" リセットする ">
+            <br>
+            <script>
+                var save_data = new Array(0,0);
+
+                document.write("level: " + save_data[0] + " study time: " + save_data[1]);
+
+                function setData(){
+                    var cdata = localStorage.getItem("clear");
+
+                    if(cdata != null){
+                        save_data = JSON.parse(cdata);
+                    }
+                }
+
+                document.getElementById("timer_start").addEventListener("click",function(){
+                    save_data[0] += 1;
+                });
+
+                document.getElementById("save").addEventListener("click",function(){
+                    localStorage.setItem("clear",JSON.stringify(save_data));
+                },false);
+
+                document.getElementById("reset").addEventListener("click",function(){
+                    for(var i=0;i<2;i++){
+                        save_data[i] = 0;
+                    }
+
+                    localStorage.setItem("clear",JSON.stringify(save_data));
+                },false);
+            </script>
+        </div>
+    </body>
+</html>
