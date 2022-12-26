@@ -24,11 +24,25 @@
             <br>
             <p>level</p><input type="button" id="level" value="">
             <p>study time</p><input type="button" id="time" value="">
+            <br>
+            <br>
+            <button onclick="sound()">海の音(ループ)</button>
+            <button onclick="">ループを止める</button>
             <script>
                 //それぞれのデータとタイマーカウントの定義
                 var save_data = new Array(0,0);
                 var stop = 0;
-                const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+                const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+                let sea = new Audio("https://funny-games.github.io/music/sound_of_the_sea.mp3");
+
+                function sound(){
+                    sea.play();
+                    sea.loop = true;
+                }
+
+                function sound_stop(){
+                    sea.loop = false;
+                }
 
                 //sleep関数の作成
                 function sleep(waitMsec) {
