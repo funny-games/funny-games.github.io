@@ -37,8 +37,16 @@ function timer_stop(){
 }
 
 function level_up(){
-    if((save_data[1] % 10) == 0){
+    if(save_data[0] < 10 && save_data[1] % 10 == 0){
         save_data[0] += 1;
+    }else if(save_data[0] < 50 && save_data[1] % 120 == 0){
+        save_data[0] += 1;
+    }else if(save_data[0] < 100 && save_data[1] % 600 == 0){
+        save_data[0] += 1;
+    }else if(save_data[0] < 500 && save_data[1] % 3600 == 0){
+        save_data[0] += 1;
+    }else if(save_data[0] < 1000 && save_data[1] % 21600 == 0){
+        save_date[0] += 1;
     }
 
     document.getElementById("level").value = save_data[0];
