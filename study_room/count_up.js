@@ -47,6 +47,8 @@ function level_up(){
         save_data[0] += 1;
     }else if(save_data[0] < 1000 && save_data[1] % 21600 == 0){
         save_date[0] += 1;
+    }else if(save_data[1] % 43,200 == 0){
+        save_data[0] += 0.5;
     }
 
     document.getElementById("level").value = save_data[0];
