@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>study room</title>
+        <style>
+            .leveltime{
+                height: 10em;
+                position: relative;
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%)
+            }
+        </style>
+        <link rel="shortcut icon" href="../png/funny_games.png">
+    </head>
+    <body onload="setData()">
+        <div class="leveltime">
+            <input type="button" id="start" value=" スタート " onclick="timer_start()">
+            <input type="button" id="end" value=" ストップ " onclick="timer_stop()">
+            <input type="button" id="save" value=" セーブする ">
+            <input type="button" id="reset" value=" リセットする ">
+            <br>
+            <p>level</p><input type="button" id="level" value="">
+            <p>study time</p><input type="button" id="time" value="">
+            <br>
+            <br>
+            <button onclick="sound()">海の音(ループ)</button>
+            <button onclick="">ループを止める</button>
+            <script src="/study_room/js/count_up.js"></script>
+        </div>
+    </body>
+</html>
