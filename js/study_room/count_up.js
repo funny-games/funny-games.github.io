@@ -80,14 +80,11 @@ async function timer_start(){
 
         document.getElementById("time").value = h + ":" + m + ":" + s;
 
+        localStorage.setItem("clear",JSON.stringify(save_data));
+
         level_up();
     }
 };
-
-//もしセーブボタンが押されたら
-document.getElementById("save").addEventListener("click",function(){
-    localStorage.setItem("clear",JSON.stringify(save_data));
-},false);
 
 //もしリセットボタンが押されたら
 function reset_timer(){
