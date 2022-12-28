@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
+        <meta charset="UTF-8">
         <title>study room</title>
         <style>
             .leveltime{
@@ -9,14 +10,35 @@
                 margin: 0;
                 position: absolute;
                 top: 50%;
-                left: 50%;
+                left: 25%;
                 margin-right: -50%;
-                transform: translate(-50%, -50%)
+                transform: translate(-50%, -50%);
+            }
+            .time{
+                height: 6em;
+                position: relative;
+                margin: 0;
+                position: absolute;
+                top: 10%;
+                left: 85%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%);
+                background-color: rgb(240, 240, 240);
+            }
+            .memo{
+                height: 10em;
+                position: relative;
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 75%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%);
             }
         </style>
         <link rel="shortcut icon" href="../png/funny_games.png">
     </head>
-    <body onload="setData()">
+    <body onclick="setData_memo()" onload="setData_count_up()">
         <!--カウントアップタイマー-->
         <div class="leveltime">
             <input type="button" id="start" value=" スタート " onclick="timer_start()">
@@ -33,11 +55,22 @@
             <script src="/js/study_room/count_up.js"></script>
         </div>
         <!--メモ-->
-        <div>
-
+        <div class="memo">
+            <textarea cols="40" rows="7" id="textarea_up"></textarea>
+            <br>
+            <textarea cols="40" rows="7" id="textarea_down"></textarea>
+            <br>
+            <button onclick="save_memo_data()">メモを保存する</button>
+            <button onclick="reset_memo()">メモを削除する</button>
+            <script src="/js/study_room/memo.js"></script>
+        </div>
+        <!--時間-->
+        <div class="time">
+            <h1 id="text"></h1>
+            <script src="/js/study_room/time.js"></script>
         </div>
     </body>
     <footer>
-        <p>ver. 0.1.1</p>
+        <p>ver. 0.2.0</p>
     </footer>
 </html>
