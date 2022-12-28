@@ -5,7 +5,7 @@ let teare_down = document.getElementById("textarea_down");
 function setData_memo(){
     var cdata_memo = localStorage.getItem("memo");
 
-    if(cdata != null){
+    if(cdata_memo != null){
         save_data_memo = JSON.parse(cdata_memo);
     }
 
