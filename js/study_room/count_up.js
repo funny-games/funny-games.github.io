@@ -91,6 +91,9 @@ document.getElementById("save").addEventListener("click",function(){
 
 //もしリセットボタンが押されたら
 document.getElementById("reset").addEventListener("click",function(){
+    let check = window.confirm('削除しますか？');
+    console.log(check);
+    
     save_data[0] = 1;
     save_data[1] = 0;
 
