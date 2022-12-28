@@ -65,15 +65,9 @@ async function timer_start(){
         save_data[1] = save_data[1] + 1;
 
         Sa = save_data[1];
-        h = Sa/3600;
-        m = (Sa/60)%60;
+        h = Math.floor(Sa/3600);
+        m = Math.floor(Sa/60)%60;
         s = Sa%60;
-        if(m < 60){
-            h = 0;
-        }
-        if(s < 60){
-            m = 0;
-        }
         if(s < 10){
             s = "0" + s;
         }
