@@ -90,16 +90,17 @@ document.getElementById("save").addEventListener("click",function(){
 },false);
 
 //もしリセットボタンが押されたら
-document.getElementById("reset").addEventListener("click",function(){
-    let check = window.confirm('リセットしますか？');
-    console.log(check);
+function reset_timer(){
+    let check = confirm('リセットしますか？');
+    
+    if(check == true){
+        save_data[0] = 1;
+        save_data[1] = 0;
 
-    save_data[0] = 1;
-    save_data[1] = 0;
+        localStorage.setItem("clear",JSON.stringify(save_data));
 
-    localStorage.setItem("clear",JSON.stringify(save_data));
+        stop = 0;
 
-    stop = 0;
-
-    setData_count_up();
-},false);
+        setData_count_up();
+    }
+}
