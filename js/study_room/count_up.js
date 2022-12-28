@@ -1,6 +1,7 @@
 //それぞれのデータとタイマーカウントの定義
 var save_data = new Array(0,0);
 var stop = 0;
+var Sa, h, m, s;
 const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 let sea = new Audio("https://funny-games.github.io/music/sound_of_the_sea.mp3");
 
@@ -63,7 +64,27 @@ async function timer_start(){
 
         save_data[1] = save_data[1] + 1;
 
-        document.getElementById("time").value = save_data[1];
+        Sa = save_data[1];
+        h = Sa/3600;
+        m = (Sa/60)%60;
+        s = Sa%60;
+        if(m < 60){
+            h = 0;
+        }
+        if(s < 60){
+            m = 0;
+        }
+        if(s < 10){
+            s = "0" + s;
+        }
+        if(m < 10){
+            m = "0" + m;
+        }
+        if(h < 10){
+            h = "0" + h;
+        }
+
+        document.getElementById("time").value = h + ":" + m + ":" + s;
 
         level_up();
     }
