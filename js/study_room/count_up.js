@@ -21,7 +21,7 @@ function sleep(waitMsec) {
 }
 
 //データのセット
-function setData(){
+function setData_count_up(){
     var cdata = localStorage.getItem("clear");
 
     if(cdata != null){
@@ -83,5 +83,5 @@ document.getElementById("reset").addEventListener("click",function(){
 
     stop = 0;
 
-    setData();
+    setData_count_up();
 },false);
