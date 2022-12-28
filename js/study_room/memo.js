@@ -3,10 +3,10 @@ let teare_up = document.getElementById("textarea_up");
 let teare_down = document.getElementById("textarea_down");
 
 function setData_memo(){
-    var cdata = localStorage.getItem("memo");
+    var cdata_memo = localStorage.getItem("memo");
 
     if(cdata != null){
-        save_data_memo = JSON.parse(cdata);
+        save_data_memo = JSON.parse(cdata_memo);
     }
 
     teare_up.innerHTML = save_data_memo[0];
