@@ -37,11 +37,12 @@ function level_set(){
             bar_max += 86400;
         }
     }
-    prog.max = bar_max;
 }
 
 function progression(){
     prog.value = save_data[1];
+
+    prog.max = bar_max;
 
     if(prog.max <= prog.value){
         document.getElementById("goal_label").innerText = "目標達成おめでとう！\n新しい目標を立てよう！";
