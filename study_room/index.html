@@ -35,20 +35,35 @@
                 margin-right: -50%;
                 transform: translate(-50%, -50%);
             }
-            .page_level{
+            .time_elapsed_level{
                 height: 10em;
                 position: relative;
                 margin: 0;
                 position: absolute;
-                top: 25%;
-                left: 25%;
+                top: 30%;
+                left: 23.5%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%);
+            }
+            .time_elapsed_level progress{
+                width: 300%;
+            }
+            .time_elapsed_level h1{
+                color: red;
+                width: 10cm;
+                height: 4cm;
+                position: relative;
+                margin: 0;
+                position: absolute;
+                top: 80%;
+                left: 190%;
                 margin-right: -50%;
                 transform: translate(-50%, -50%);
             }
         </style>
         <link rel="shortcut icon" href="../png/funny_games_icon.png">
     </head>
-    <body onclick="setData_memo()" onload="setData_count_up()">
+    <body onload="setData_count_up();setData_memo();setData_time_elapsed_level()">
         <!--カウントアップタイマー-->
         <div class="leveltime">
             <input type="button" id="start" value=" スタート " onclick="timer_start()">
@@ -78,11 +93,20 @@
             <h1 id="text"></h1>
             <script src="/js/study_room/time.js"></script>
         </div>
-        <!--やったページの量でレベル-->
-        <div class="page_level">
+        <!--時間経過で進む-->
+        <div class="time_elapsed_level">
+            <progress id="progress" value="0" max="100">
+            </progress>
+            <br>
+            <p>目標のレベルを入力:</p>
+            <input type="text" id="goal_level" value="0">
+            <button id="set_level" onclick="level_set()">設定する</button>
+            <h1 id="goal_label"></h1>
+            <script src="/js/study_room/time_elapsed_level.js"></script>
+            <br>
         </div>
     </body>
     <footer>
-        <p>ver. 0.2.10</p>
+        <p>ver. 0.3.0</p>
     </footer>
 </html>
