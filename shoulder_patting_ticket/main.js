@@ -19,7 +19,7 @@ function ticket_use(){
 }
 
 function ticket_add(){
-    if(document.getElementById("ticket_add_code").value == "#thanks, dad"){
+    if(document.getElementById("ticket_add_code").value == "#thanksdad"){
         ticket_count += 1;
         localStorage.setItem("ticket",JSON.stringify(ticket_count));
         display_count();
