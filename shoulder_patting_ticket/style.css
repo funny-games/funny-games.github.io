@@ -6,14 +6,14 @@ body {
 .ticket_count {
     position: absolute;
     top: 50%;
-    left: 55%;
+    left: 60%;
     transform: translate(-50%, -50%);
 }
 
 img{
     position: absolute;
     top: 50%;
-    left: 37%;
+    left: 32%;
     transform: translate(-50%, -50%);
 }
 
