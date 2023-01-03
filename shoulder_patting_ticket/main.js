@@ -19,9 +19,11 @@ function ticket_use(){
 }
 
 function ticket_add(){
-    ticket_count += 2;
-    localStorage.setItem("ticket",JSON.stringify(ticket_count));
-    display_count();
+    if(document.getElementById("ticket_add_code").value == "#thanks, dad"){
+        ticket_count += 1;
+        localStorage.setItem("ticket",JSON.stringify(ticket_count));
+        display_count();
+    }
 }
 
 function count_timer(){
