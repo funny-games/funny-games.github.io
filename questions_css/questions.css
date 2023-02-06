@@ -2,6 +2,10 @@
     display:none;
   }
   
+.home_logo{
+    height: 1.5cm;
+}
+
 label,
 li{
     display:block;
