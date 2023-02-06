@@ -5,6 +5,7 @@
 div.container4 {
     height: 10em;
     position: relative }
+    
 div.container4 h1 {
     margin: 0;
     position: absolute;
@@ -22,8 +23,8 @@ div.container4 p {
 .new_site {
     margin: 0;
     position: absolute;
-    top: 120%;
-    left: 50%;
+    top: 125%;
+    left: 47%;
     margin-right: -50%;
     transform: translate(-50%, -50%) 
 }
