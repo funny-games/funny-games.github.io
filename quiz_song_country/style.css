@@ -5,3 +5,23 @@
     width: 8em;
     height: 8em;
 }
+
+.side_left
+{
+    margin: 0;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.side
+{
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 80%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
