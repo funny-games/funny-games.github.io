@@ -29,6 +29,8 @@ function set(){
         i = getRandomInt(0, 8);
     }else if(exa == 2){
         i = getRandomInt(9, 18);
+    }else if(exa == 3){
+        i = getRandomInt(0, 18);
     }
     document.getElementById("text").innerHTML = "";
     document.getElementById("answer").value = "";
