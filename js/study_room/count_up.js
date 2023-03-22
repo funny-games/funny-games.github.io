@@ -17,7 +17,7 @@ if(today.getDay() == 0 || today.getDay() == 6){save_data[2] = 18000;
 }else{save_data[2] = 10800;
 }} document.getElementById("level").value = save_data[0];
 document.getElementById("time").value = save_data[1];
-//document.getElementById("dailytime").value = save_data[2];
+document.getElementById("dailytime").value = save_data[2];
 }function timer_stop(){stop = 1;
 x = 0;
 }function level_up(){if(save_data[0] < 10 && save_data[1] % 10 == 0){save_data[0] += 1;
