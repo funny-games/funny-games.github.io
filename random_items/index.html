@@ -303,11 +303,36 @@
             var rn;
             var startTime; // 開始時間
             var timerInterval; // setIntervalのID
+            var Roulette = false;
 
-            function randomItems(){
+            function startRoulette() {
+                
+                var currentIndex = 0; // 現在のインデックス
+
+                // 100ミリ秒ごとにルーレットの文字列を更新する処理
+                timerInterval = setInterval(function() {
+                    document.getElementById('item_name').textContent = items[currentIndex]; // 文字列を表示
+
+                    currentIndex = (currentIndex + 1) % items.length; // インデックスを更新
+                }, 100);
+
+            }
+
+            function stopRoulette() {
+                clearInterval(timerInterval); // ルーレットの更新を停止
                 rn = Math.floor(Math.random() * 282);
                 alert(items[rn]);
                 document.getElementById("item_name").textContent = items[rn];
+            }
+
+            function randomItems(){
+                if(Roulette){
+                    Roulette = false;
+                    stopRoulette();
+                }else{
+                    Roulette = true;
+                    startRoulette();
+                }
             }
 
             function startTimer() {
