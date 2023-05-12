@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アナログ時計</title>
+</head>
+    <body>
+        <div>
+            <canvas id="clock" width="200" height="200"></canvas>
+            <script>
+                let context = document.getElementById("clock").getContext("2d");
+                let line_last = 75;
+
+                context.beginPath();
+
+                context.moveTo(100,100);
+                context.lineTo(line_last,line_last);
+                
+                context.arc( 100, 100, 50, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
+                context.fillStyle = "#e8e8e8e8" ;
+                context.fill() ;
+
+                context.strokeStyle = "#000000" ;
+                context.lineWidth = 8 ;
+
+                context.stroke() ;
+            </script>
+        </div>
+    </body>
+</html>
