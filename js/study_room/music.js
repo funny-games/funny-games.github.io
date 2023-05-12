@@ -1,11 +1,12 @@
 let video_link = [
-    'tDrvgfDiEE4?start=19"'
+    'vr9dLvJs7VE"',
+    '298Fo2EKY4g"'
 ];
 
 let i = 0;
 
 function set(){
-    i = getRandomInt(0, 1);
+    i = getRandomInt(0, 2);
     document.getElementById("video_video").innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + video_link[i] + ' title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
 }
 
