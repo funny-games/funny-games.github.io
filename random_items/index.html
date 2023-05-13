@@ -334,7 +334,7 @@
                 timerInterval = setInterval(function() {
                     document.getElementById('item_name').textContent = items[currentIndex]; // 文字列を表示
 
-                    currentIndex = (currentIndex + 1) % items.length; // インデックスを更新
+                    currentIndex = Math.floor(Math.random() * 282);
                 }, 100);
 
             }
