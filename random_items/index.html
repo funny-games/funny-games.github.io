@@ -11,8 +11,6 @@
                 justify-content: center;
                 align-items: center;
                 height: 100vh; /* コンテナの高さを調整 */
-
-                font-family: "Ryumin Medium KL";
             }
             .button {
                 background-color: transparent;
@@ -23,6 +21,8 @@
                 background-color: #f6f6f6;
                 border: 2px solid #6c6c6c;
                 border-radius: 50px / 50px;
+
+                font-size: 0.5cm;
             }
         </style>
     </head>
@@ -345,11 +345,20 @@
                 document.getElementById("item_name").textContent = items[rn];
             }
 
+            const start = new Audio("start.mp4");
+            const stop_audio = new Audio("stop.mp4");
+
             function randomItems(){
                 if(Roulette){
+                    start.pause();
+                    start.currentTime = 0;
+                    stop_audio.play();
                     Roulette = false;
                     stopRoulette();
                 }else{
+                    stop_audio.pause();
+                    stop_audio.currentTime = 0;
+                    start.play(); //クリックしたら音を再生
                     Roulette = true;
                     startRoulette();
                 }
