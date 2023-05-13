@@ -5,11 +5,32 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ランダムアイテムチャレンジ用</title>
+        <style type="text/css">
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh; /* コンテナの高さを調整 */
+
+                font-family: "Ryumin Medium KL";
+            }
+            .button {
+                background-color: transparent;
+                border: none;
+
+                width: 400px;
+                height: 50px;
+                background-color: #f6f6f6;
+                border: 2px solid #6c6c6c;
+                border-radius: 50px / 50px;
+            }
+        </style>
     </head>
     <body>
         <main>
-            <button onclick="randomItems()">スタート</button>
-            <p id="item_name"></p>
+            <div class="container">
+                <button onclick="randomItems()" id="item_name" class="button">スタート</button>
+            </div>
             <br>
             <div id="timer">00:00:00</div>
             <br>
@@ -321,7 +342,6 @@
             function stopRoulette() {
                 clearInterval(timerInterval); // ルーレットの更新を停止
                 rn = Math.floor(Math.random() * 282);
-                alert(items[rn]);
                 document.getElementById("item_name").textContent = items[rn];
             }
 
