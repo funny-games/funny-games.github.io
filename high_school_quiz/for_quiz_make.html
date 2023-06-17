@@ -16,6 +16,14 @@
             }
             document.getElementById("result").innerText += 'data[x] = ["' + document.getElementById("form_sentence").value +'", "' + document.getElementById("form_anser").value + '", "t", "N/A", "' + n + '"];\n';
         }
+        function reset(){
+            document.getElementById("form_sentence").value = "";
+            document.getElementById("form_anser").value = "";
+            document.getElementById("form_number").value = "1";
+        }
+        function remove(){
+            document.getElementById("result").innerText -= 'data[x] = ["' + document.getElementById("form_sentence").value +'", "' + document.getElementById("form_anser").value + '", "t", "N/A", "' + n + '"];\n';
+        }
     </script>
 </head>
 <body>
@@ -26,6 +34,7 @@
         <option value="2">number</option>
     </select>
     <button onclick="make_quiz()">作成</button>
+    <button onclick="reset()">フォームリセット</button>
     <br>
     <div id="result"></div>
 </body>
