@@ -25,13 +25,13 @@ body button{
 @media (max-width: 600px) {
     body input{
         position: fixed;
-        top: 55%;
+        top: 60%;
         left: 30%;
         transform: translate(-50%, -50%);
     }
     body button{
         position: fixed;
-        top: 55%;
+        top: 60%;
         left: 70%;
         transform: translate(-50%, -50%);
     }
