@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>問題 example</title>
-        <link href="quiz.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/high_school_quiz/quiz.css" rel="stylesheet" type="text/css" media="all">
         <script>
             let data = new Array();
             let count;
@@ -24,7 +24,7 @@
                 }else if(data[count][2] != "t"){
                     set_quiz();
                 }else{
-                    document.getElementById("q").textContent = (used+1) + "/" + n + ": " +data[count][0];
+                    document.getElementById("q").innerHTML = (used+1) + "/" + n + ": " +data[count][0];
                     if(data[count][4] == "text"){
                         document.getElementById("a").inputMode = "text";
                     }else if(data[count][4] == "num"){
