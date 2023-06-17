@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>問題作成機</title>
+    <script>
+        let exa, n;
+        function make_quiz(){
+            exa = document.getElementById("form_number").value;
+            if(exa == 1){
+                n = "text";
+            }else if(exa == 2){
+                n = "num";
+            }
+            document.getElementById("result").innerText += 'data[x] = ["' + document.getElementById("form_sentence").value +'", "' + document.getElementById("form_anser").value + '", "t", "N/A", "' + n + '"];\n';
+        }
+    </script>
+</head>
+<body>
+    <input id="form_sentence">
+    <input id="form_anser">
+    <select id="form_number">
+        <option value="1" selected>text</option>
+        <option value="2">number</option>
+    </select>
+    <button onclick="make_quiz()">作成</button>
+    <br>
+    <div id="result"></div>
+</body>
+</html>
