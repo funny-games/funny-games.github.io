@@ -24,7 +24,7 @@
                 }else if(data[count][2] != "t"){
                     set_quiz();
                 }else{
-                    document.getElementById("q").textContent = data[count][0];
+                    document.getElementById("q").textContent = (used+1) + "/" + n + ": " +data[count][0];
                     if(data[count][4] == "text"){
                         document.getElementById("a").inputMode = "text";
                     }else if(data[count][4] == "num"){
@@ -140,7 +140,7 @@
 
 
         <p><a href="https://funny-games.github.io/high_school_quiz/index.html">ホームへ</a></p>
-        <p>ver. 0.2.0</p>
+        <p>ver. 0.2.1</p>
 
 
         <h2 id="q">問題</h2> <!--問題-->
