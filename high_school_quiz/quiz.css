@@ -1,0 +1,50 @@
+body .title{
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+body h2{
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+body input{
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+body button{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media (max-width: 600px) {
+    body input{
+        position: fixed;
+        top: 45%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+    }
+    body button{
+        position: fixed;
+        top: 45%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+    }
+}
+body .text{
+    position: fixed;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+body table{
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
