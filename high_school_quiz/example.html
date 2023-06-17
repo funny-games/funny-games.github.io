@@ -25,6 +25,11 @@
                     set_quiz();
                 }else{
                     document.getElementById("q").textContent = data[count][0];
+                    if(data[count][4] == "text"){
+                        document.getElementById("a").inputMode = "text";
+                    }else if(data[count][4] == "num"){
+                        document.getElementById("a").inputMode = "numeric";
+                    }
                     used += 1;
                 }
             }
@@ -42,7 +47,7 @@
                 an = document.getElementById("a").value; //       ↓
                 switch(count){
                     case 1:
-                        if(an == 1+1){
+                        if(an == data[count][1]){
                             data[count][2] = "o"; 
                             data[count][3] = an;
                             document.getElementById("text").innerText = "正解";
@@ -53,7 +58,7 @@
                         }
                         break;
                     case 2:
-                        if(an == 2-1){
+                        if(an == data[count][1]){
                             data[count][2] = "o"; 
                             data[count][3] = an;
                             document.getElementById("text").innerText = "正解";
@@ -64,7 +69,7 @@
                         }
                         break;
                     case 3:
-                        if(an == 10/2){
+                        if(an == data[count][1]){
                             data[count][2] = "o"; 
                             data[count][3] = an;
                             document.getElementById("text").innerText = "正解";
@@ -75,7 +80,7 @@
                         }
                         break;
                     case 4:
-                        if(an == 1*3){
+                        if(an == data[count][1]){
                             data[count][2] = "o"; 
                             data[count][3] = an;
                             document.getElementById("text").innerText = "正解";
@@ -108,10 +113,10 @@
                 document.getElementById("result").innerHTML = "";
                 count = 0;
                 used = 0;
-                data[1] = ["1+1=?", "2", "t", "N/A"];
-                data[2] = ["2-1=?", "1", "t", "N/A"];
-                data[3] = ["10/2=?", "5", "t", "N/A"];
-                data[4] = ["1*3=?", "3", "t", "N/A"]; //  　←
+                data[1] = ["1+1=?", "2", "t", "N/A", "num"];
+                data[2] = ["2-1=?", "1", "t", "N/A", "num"];
+                data[3] = ["「あ」と入れてください", "あ", "t", "N/A", "text"];
+                data[4] = ["1*3=?", "3", "t", "N/A", "num"]; //  　←
                 document.getElementById("a").disabled = false;
                 set_quiz();
             }
@@ -131,11 +136,11 @@
     </head>
     <body onload="reset()">
 
-        <h1 class="title">命題と条件</h1> <!--タイトル-->
+        <h1 class="title">問題</h1> <!--タイトル-->
 
 
         <p><a href="https://funny-games.github.io/high_school_quiz/index.html">ホームへ</a></p>
-        <p>ver. 0.1.1</p>
+        <p>ver. 0.2.0</p>
 
 
         <h2 id="q">問題</h2> <!--問題-->
