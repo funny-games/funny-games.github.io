@@ -4,20 +4,66 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>3択クイズ 高校ver.</title>
+        <title>高校クイズ!</title>
         <style>
             .wavy-border {
                 border-radius: 50%;
                 border: 2px solid;
                 border-image: linear-gradient(45deg, #000000, #ffffff) 1;
             }
+            .link_s {
+                display: none;
+                position: absolute;
+                left: 2%;
+            }
+            .bodys {
+                box-sizing: border-box;
+            }
+            footer{
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                text-align: center;
+            }
+            @media (max-width: 600px) {
+                .link_s {
+                    display: none;
+                    position: absolute;
+                    left: 5%;
+                }
+            }
         </style>
     </head>
-    <header>
-        <div style="display: grid; place-items: center; transform: translateX(-35%);"><h1>3択クイズ</h1></div>
-        <div class="wavy-border"></div>
-    </header>
     <body>
-        ここに問題サイトが入ります。
+        <div style="display: grid; top: 0%; left: 50%;"><h1><sub>高校</sub>クイズ</h1></div>
+        <div class="wavy-border"></div>
+
+
+        <div class="bodys">
+            <button id="show-button">数学の問題リンク</button>
+            <div id="math_sentence" class="link_s">
+                <a href="https://funny-games.github.io/high_school_quiz/Math/1/chapter2/section2/word_1.html" style="color: blue;">第二章 2.命題と条件 単語1</a><br>
+                <a href="https://funny-games.github.io/high_school_quiz/Math/1/chapter2/section2/word_2.html" style="color: blue;">第二章 2.命題と条件 単語2</a><br>
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            let math = false;
+
+            document.getElementById("show-button").addEventListener("click", function() {
+                const hiddenText = document.getElementById("math_sentence");
+                if(math){
+                    math = false;
+                    hiddenText.style.display = "none";
+                }else{
+                    math = true
+                    hiddenText.style.display = "block";
+                }
+            });
+        </script>
     </body>
+    <footer>
+        <p>ver. 1.0</p>
+    </footer>
 </html>
