@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>数学1 第二章 命題と条件</title>
+        <link href="/high_school_quiz/quiz.css" rel="stylesheet" type="text/css" media="all">
+        <script>
+            let data = new Array();
+            let count;
+            let n = 9; // 問題数    ←
+            let used = 0; // やった問題数
+            let b_situ = false; //false = 答えの確定, true = 次の問題へ
+
+            function set_quiz(){
+                b_situ = false;
+                document.getElementById("b").textContent = "確定";
+                document.getElementById("a").value = "";
+                document.getElementById("text").innerText = "";
+                count = Math.floor( Math.random() * n ) + 1;
+                if(used == n){
+                    end_quiz();
+                }else if(data[count][2] != "t"){
+                    set_quiz();
+                }else{
+                    document.getElementById("q").textContent = (used+1) + "/" + n + ": " +data[count][0];
+                    if(data[count][4] == "text"){
+                        document.getElementById("a").inputMode = "text";
+                    }else if(data[count][4] == "num"){
+                        document.getElementById("a").inputMode = "numeric";
+                    }
+                    used += 1;
+                }
+            }
+
+            function judge(){
+                b_situ = true;
+                if(used == n){
+                    document.getElementById("a").disabled = true;
+                    document.getElementById("b").textContent = "結果表示";
+                }else{
+                    document.getElementById("b").textContent = "次の問題へ";
+                }
+
+                let an;
+                an = document.getElementById("a").value; //       ↓
+                switch(count){
+                    case 1:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 2:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 3:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 4:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 5:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 6:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 7:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 8:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 9:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                }
+            }
+
+            function end_quiz(){
+                used += 1;
+
+                document.getElementById("result").innerHTML += "<tr><th>番号</th><th>問題</th><th>o/x</th><th>正解</th><th>解答</th>";
+
+                for(let i=1;i<=n;i++){
+                    document.getElementById("result").innerHTML += "<td>" + i + ":</td>" + "<td>" + data[i][0] + "</td>" + "<td>" + data[i][2] + "</td>" + "<td>" + data[i][1] + "</td>" + "<td>" + data[i][3] + "</td>";
+                }
+
+                document.getElementById("result").innerHTML += "</tr>";
+                
+                document.getElementById("q").textContent = "END";
+
+                document.getElementById("b").textContent = "もう一度挑戦する";
+            }
+
+            function reset(){
+                document.getElementById("result").innerHTML = "";
+                count = 0;
+                used = 0;
+
+                data[1] = ["正しいか正しくないかが定まる文や式を何というか", "命題", "t", "N/A", "text"];
+                data[2] = ["命題p=>qについてpを何というか", "仮定", "t", "N/A", "text"];
+                data[3] = ["命題p=>qについてqを何というか", "結論", "t", "N/A", "text"];
+                data[4] = ["命題p=>qが真の時、どちらが成り立つ a:P⊂Q b:P⊃Q", "a", "t", "N/A", "text"];
+                data[5] = ["命題が正しい時、その命題は何というか", "真", "t", "N/A", "text"];
+                data[6] = ["命題が正しくない時、その命題は何というか", "偽", "t", "N/A", "text"];
+                data[7] = ["文字xを含む分や式でxに値を代入する事で真偽が定まるものを何というか", "条件", "t", "N/A", "text"];
+                data[8] = ["条件に含まれる文字をどんな集合の要素かとする時、その集合を何というか", "全体集合", "t", "N/A", "text"];
+                data[9] = ["命題が偽である事を示すには何という例が必要か", "反例", "t", "N/A", "text"];
+
+                document.getElementById("a").disabled = false;
+                set_quiz();
+            }
+
+            function button_process(){
+                if(b_situ){
+                    set_quiz();
+                }else{
+                    if(used > n){
+                        reset();
+                    }else{
+                        judge();
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload="reset()">
+
+        <h1 class="title">命題と条件 単語1</h1> <!--タイトル-->
+
+
+        <p><a href="https://funny-games.github.io/high_school_quiz/index.html">ホームへ</a></p>
+        <p>ver. 1.0</p>
+
+
+        <h2 id="q">問題</h2> <!--問題-->
+
+        <br>
+
+        <input id="a"> <!--フォーム-->
+
+
+        <button onclick="button_process()" id="b"></button> <!--ボタン-->
+
+
+        <h1 id="text" class="text"></h1> <!--正解かどうか-->
+
+        <br>
+
+        <table id="result"></table> <!--成績-->
+
+    </body>
+</html>
