@@ -17,8 +17,13 @@ let video_link = [
     'dI7ffUcptWQ"',//Indonesia 15
     '9RlKkvH4R9k"',//Canada 16
     'Jfy9d57eugo?start=7"',//South Africa 17
-    'ng2yzsvG9qA?start=10"'//Saudi Arabia 18
+    'ng2yzsvG9qA?start=10"',//Saudi Arabia 18
     //-----Normal-----//
+    'hdmZAZTEVLM?t=8',//Norway 19
+    'l2QZX9_-OIo?t=6',//Finland 20
+    'hwC_waQnqX0?t=8',//Iceland 21
+    'UsArLg9hdCc?t=7',//Sweden 22
+    //-----Hard-----//
 ];
 
 let i = 0;

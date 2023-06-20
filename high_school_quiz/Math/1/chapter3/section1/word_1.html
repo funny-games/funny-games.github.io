@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>問題 example</title>
+        <link href="/high_school_quiz/quiz.css" rel="stylesheet" type="text/css" media="all">
+        <script>
+            let data = new Array();
+            let count;
+            let n = 4; // 問題数    ←
+            let used = 0; // やった問題数
+            let b_situ = false; //false = 答えの確定, true = 次の問題へ
+
+            function set_quiz(){
+                b_situ = false;
+                document.getElementById("b").textContent = "確定";
+                document.getElementById("a").value = "";
+                document.getElementById("text").innerText = "";
+                count = Math.floor( Math.random() * n ) + 1;
+                if(used == n){
+                    end_quiz();
+                }else if(data[count][2] != "t"){
+                    set_quiz();
+                }else{
+                    document.getElementById("q").innerHTML = (used+1) + "/" + n + ": " +data[count][0];
+                    if(data[count][4] == "text"){
+                        document.getElementById("a").inputMode = "text";
+                    }else if(data[count][4] == "num"){
+                        document.getElementById("a").inputMode = "numeric";
+                    }
+                    used += 1;
+                }
+            }
+
+            function judge(){
+                b_situ = true;
+                if(used == n){
+                    document.getElementById("a").disabled = true;
+                    document.getElementById("b").textContent = "結果表示";
+                }else{
+                    document.getElementById("b").textContent = "次の問題へ";
+                }
+
+                let an;
+                an = document.getElementById("a").value; //       ↓
+                switch(count){
+                    case 1:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 2:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 3:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                    case 4:
+                        if(an == data[count][1]){
+                            data[count][2] = "o"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "正解";
+                        }else{
+                            data[count][2] = "x"; 
+                            data[count][3] = an;
+                            document.getElementById("text").innerText = "不正解";
+                        }
+                        break;
+                }
+            }
+
+            function end_quiz(){
+                used += 1;
+
+                document.getElementById("result").innerHTML += "<tr><th>番号</th><th>問題</th><th>o/x</th><th>正解</th><th>解答</th>";
+
+                for(let i=1;i<=n;i++){
+                    document.getElementById("result").innerHTML += "<td>" + i + ":</td>" + "<td>" + data[i][0] + "</td>" + "<td>" + data[i][2] + "</td>" + "<td>" + data[i][1] + "</td>" + "<td>" + data[i][3] + "</td>";
+                }
+
+                document.getElementById("result").innerHTML += "</tr>";
+                
+                document.getElementById("q").textContent = "END";
+
+                document.getElementById("b").textContent = "もう一度挑戦する";
+            }
+
+            function reset(){
+                document.getElementById("result").innerHTML = "";
+                count = 0;
+                used = 0;
+                // <span style='text-decoration:overline;'>P</span>
+                data[1] = ["1+1=?", "2", "t", "N/A", "num"];
+                data[2] = ["2-1=?", "1", "t", "N/A", "num"];
+                data[3] = ["「あ」と入れてください", "あ", "t", "N/A", "text"];
+                data[4] = ["1*3=?", "3", "t", "N/A", "num"]; //  　←
+                document.getElementById("a").disabled = false;
+                set_quiz();
+            }
+
+            function button_process(){
+                if(b_situ){
+                    set_quiz();
+                }else{
+                    if(used > n){
+                        reset();
+                    }else{
+                        judge();
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload="reset()">
+
+        <h1 class="title">問題</h1> <!--タイトル-->
+
+
+        <p><a href="https://funny-games.github.io/high_school_quiz/index.html">ホームへ</a></p>
+        <p>ver. 1.0</p>
+
+
+        <h2 id="q">問題</h2> <!--問題-->
+
+        <br>
+
+        <input id="a" inputmode="numeric"> <!--フォーム-->
+
+
+        <button onclick="button_process()" id="b"></button> <!--ボタン-->
+
+
+        <h1 id="text" class="text"></h1> <!--正解かどうか-->
+
+        <br>
+
+        <table id="result"></table> <!--成績-->
+
+    </body>
+
+    <!--
+        候補達
+        
+        data[x] = ["xを定めるとyが定まるときyはxの何というか", "関数", "t", "N/A", "text"];
+        data[x] = ["yがxの1時式のときyはxの何というか", "一次関数", "t", "N/A", "text"];
+        data[x] = ["yがxの2時式のときyはxの何というか", "二次関数", "t", "N/A", "text"];
+        data[x] = ["yがxの関数であるとき式をどのように書くか", "f(x)", "t", "N/A", "text"];
+        data[x] = ["f(a)を、f(x)のx=aにおける何というか", "値", "t", "N/A", "text"];
+        data[x] = ["xの取りうる値の範囲をその関数の何というか", "定義域", "t", "N/A", "text"];
+        data[x] = ["xに対応するyの取る範囲をその関数の何というか", "値域", "t", "N/A", "text"];
+        data[x] = ["P(a,b),点(a,b)などを何というか", "座標", "t", "N/A", "text"];
+        data[x] = ["座標の定められた平面を何というか", "座標平面", "t", "N/A", "text"];
+        data[x] = ["座標平面は座標軸によって4つの部分に分けられるが各部分を何というか", "象限", "t", "N/A", "text"];
+        data[x] = ["y=ax+bをこの「」という。この「」に入る言葉を入れよ。", "直線の方程式", "t", "N/A", "text"];
+        data[x] = ["関数の値域に最大の値がある時それを関数の何というか", "最大値", "t", "N/A", "text"];
+        data[x] = ["関数の値域に最小の値がある時それを関数の何というか", "最小値", "t", "N/A", "text"];
+        data[x] = ["二次関数のグラフの形の曲線を何というか", "放物線", "t", "N/A", "text"];
+        data[x] = ["放物線は曲線であり対称の軸を持つが対称の軸を何というか", "軸", "t", "N/A", "text"];
+        data[x] = ["軸と放物線の交点を放物線の何というか", "頂点", "t", "N/A", "text"];
+        data[x] = ["上に開いた放物線は何であるというか", "下に凸", "t", "N/A", "text"];
+        data[x] = ["下に開いた放物線は何であるというか", "上に凸", "t", "N/A", "text"];
+    -->
+</html> 
