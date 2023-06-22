@@ -55,6 +55,7 @@
                             data[count][2] = "x"; 
                             data[count][3] = an;
                             document.getElementById("text").innerText = "不正解";
+                            document.getElementById("result").innerHTML = data[count][1];
                         }
                         break;
                     case 2:
@@ -66,6 +67,7 @@
                             data[count][2] = "x"; 
                             data[count][3] = an;
                             document.getElementById("text").innerText = "不正解";
+                            document.getElementById("result").innerHTML = data[count][1];
                         }
                         break;
                     case 3:
@@ -77,6 +79,7 @@
                             data[count][2] = "x"; 
                             data[count][3] = an;
                             document.getElementById("text").innerText = "不正解";
+                            document.getElementById("result").innerHTML = data[count][1];
                         }
                         break;
                     case 4:
@@ -88,6 +91,7 @@
                             data[count][2] = "x"; 
                             data[count][3] = an;
                             document.getElementById("text").innerText = "不正解";
+                            document.getElementById("result").innerHTML = data[count][1];
                         }
                         break;
                 }
@@ -96,7 +100,7 @@
             function end_quiz(){
                 used += 1;
 
-                document.getElementById("result").innerHTML += "<tr><th>番号</th><th>問題</th><th>o/x</th><th>正解</th><th>解答</th>";
+                document.getElementById("result").innerHTML = "<tr><th>番号</th><th>問題</th><th>o/x</th><th>正解</th><th>解答</th>";
 
                 for(let i=1;i<=n;i++){
                     document.getElementById("result").innerHTML += "<td>" + i + ":</td>" + "<td>" + data[i][0] + "</td>" + "<td>" + data[i][2] + "</td>" + "<td>" + data[i][1] + "</td>" + "<td>" + data[i][3] + "</td>";
