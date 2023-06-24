@@ -529,7 +529,14 @@
         }
 
         function item_get(id){
-            document.getElementById(id).innerHTML += '✅';
+            const targetChar = "✅";
+            const regex = new RegExp(targetChar, 'g');
+
+            if(document.getElementById(id).innerHTML.includes(targetChar)){
+                document.getElementById(id).innerHTML = document.getElementById(id).innerHTML.replace(regex, '');
+            }else{
+                document.getElementById(id).innerHTML += '✅';
+            }
         }
 
         function intRandom(min, max){
