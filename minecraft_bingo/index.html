@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイクラビンゴチャレンジ用</title>
+    <style type="text/css">
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* コンテナの高さを調整 */
+        }
+        body{
+            background-image: url('line.png');
+            background-repeat: repeat;
+            background-size: 0.5cm 0.5cm;
+        }
+        .button {
+            background-color: transparent;
+            border: none;
+
+            width: 400px;
+            height: 50px;
+            background-color: #f6f6f6;
+            border: 2px solid #c7b0cd;
+            border-radius: 50px / 50px;
+
+            font-size: 0.5cm;
+        }
+        .overlay {
+            z-index: 1;
+            /* 要素のスタイル */
+        }
+    </style>
+</head>
+    <body onload="set()">
+        <div class="container">
+            <!--<img src="container_design.png" width="400" height="560">-->
+            <div class="overlay">
+                <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/0')" id="0/0"></button>
+                <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/1')" id="0/1"></button>
+                <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/2')" id="0/2"></button>
+                <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/3')" id="0/3"></button>
+                <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/4')" id="0/4"></button>
+                <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/5')" id="0/5"></button>
+
+                <button style="position: absolute; background: none; border: none; top: 36%; transform: translate(-50%, -50%);" onclick="item_get('1/0')" id="1/0"></button>
+                <button style="position: absolute; background: none; border: none; top: 36%; transform: translate(-50%, -50%);" onclick="item_get('1/1')" id="1/1"></button>
+                <button style="position: absolute; background: none; border: none; top: 36%; transform: translate(-50%, -50%);" onclick="item_get('1/2')" id="1/2"></button>
+                <button style="position: absolute; background: none; border: none; top: 36%; transform: translate(-50%, -50%);" onclick="item_get('1/3')" id="1/3"></button>
+                <button style="position: absolute; background: none; border: none; top: 36%; transform: translate(-50%, -50%);" onclick="item_get('1/4')" id="1/4"></button>
+                <button style="position: absolute; background: none; border: none; top: 36%; transform: translate(-50%, -50%);" onclick="item_get('1/5')" id="1/5"></button>
+
+                <button style="position: absolute; background: none; border: none; top: 46%; transform: translate(-50%, -50%);" onclick="item_get('2/0')" id="2/0"></button>
+                <button style="position: absolute; background: none; border: none; top: 46%; transform: translate(-50%, -50%);" onclick="item_get('2/1')" id="2/1"></button>
+                <button style="position: absolute; background: none; border: none; top: 46%; transform: translate(-50%, -50%);" onclick="item_get('2/2')" id="2/2"></button>
+                <button style="position: absolute; background: none; border: none; top: 46%; transform: translate(-50%, -50%);" onclick="item_get('2/3')" id="2/3"></button>
+                <button style="position: absolute; background: none; border: none; top: 46%; transform: translate(-50%, -50%);" onclick="item_get('2/4')" id="2/4"></button>
+                <button style="position: absolute; background: none; border: none; top: 46%; transform: translate(-50%, -50%);" onclick="item_get('2/5')" id="2/5"></button>
+  
+                <button style="position: absolute; background: none; border: none; top: 56%; transform: translate(-50%, -50%);" onclick="item_get('3/0')" id="3/0"></button>
+                <button style="position: absolute; background: none; border: none; top: 56%; transform: translate(-50%, -50%);" onclick="item_get('3/1')" id="3/1"></button>
+                <button style="position: absolute; background: none; border: none; top: 56%; transform: translate(-50%, -50%);" onclick="item_get('3/2')" id="3/2"></button>
+                <button style="position: absolute; background: none; border: none; top: 56%; transform: translate(-50%, -50%);" onclick="item_get('3/3')" id="3/3"></button>
+                <button style="position: absolute; background: none; border: none; top: 56%; transform: translate(-50%, -50%);" onclick="item_get('3/4')" id="3/4"></button>
+                <button style="position: absolute; background: none; border: none; top: 56%; transform: translate(-50%, -50%);" onclick="item_get('3/5')" id="3/5"></button>
+
+                <button style="position: absolute; background: none; border: none; top: 66%; transform: translate(-50%, -50%);" onclick="item_get('4/0')" id="4/0"></button>
+                <button style="position: absolute; background: none; border: none; top: 66%; transform: translate(-50%, -50%);" onclick="item_get('4/1')" id="4/1"></button>
+                <button style="position: absolute; background: none; border: none; top: 66%; transform: translate(-50%, -50%);" onclick="item_get('4/2')" id="4/2"></button>
+                <button style="position: absolute; background: none; border: none; top: 66%; transform: translate(-50%, -50%);" onclick="item_get('4/3')" id="4/3"></button>
+                <button style="position: absolute; background: none; border: none; top: 66%; transform: translate(-50%, -50%);" onclick="item_get('4/4')" id="4/4"></button>
+                <button style="position: absolute; background: none; border: none; top: 66%; transform: translate(-50%, -50%);" onclick="item_get('4/5')" id="4/5"></button>
+ 
+                <button style="position: absolute; background: none; border: none; top: 76%; transform: translate(-50%, -50%);" onclick="item_get('5/0')" id="5/0"></button>
+                <button style="position: absolute; background: none; border: none; top: 76%; transform: translate(-50%, -50%);" onclick="item_get('5/1')" id="5/1"></button>
+                <button style="position: absolute; background: none; border: none; top: 76%; transform: translate(-50%, -50%);" onclick="item_get('5/2')" id="5/2"></button>
+                <button style="position: absolute; background: none; border: none; top: 76%; transform: translate(-50%, -50%);" onclick="item_get('5/3')" id="5/3"></button>
+                <button style="position: absolute; background: none; border: none; top: 76%; transform: translate(-50%, -50%);" onclick="item_get('5/4')" id="5/4"></button>
+                <button style="position: absolute; background: none; border: none; top: 76%; transform: translate(-50%, -50%);" onclick="item_get('5/5')" id="5/5"></button>
+            </div>
+        </div>
+    <script>
+        let min = 1, max = 394, randoms = [], tmp;
+
+        let items_img = ["acacia_boat.png"
+                        ,"acacia_chest_boat.png"
+                        ,"acacia_door.png"
+                        ,"acacia_hanging_sign.png"
+                        ,"acacia_sign.png"
+                        ,"amethyst_shard.png"
+                        ,"angler_pottery_sherd.png"
+                        ,"apple.png"
+                        ,"archer_pottery_sherd.png"
+                        ,"armor_stand.png"
+                        ,"arms_up_pottery_sherd.png"
+                        ,"arrow.png"
+                        ,"axolotl_bucket.png"
+                        ,"baked_potato.png"
+                        ,"bamboo.png"
+                        ,"bamboo_chest_raft.png"
+                        ,"bamboo_door.png"
+                        ,"bamboo_hanging_sign.png"
+                        ,"bamboo_raft.png"
+                        ,"bamboo_sign.png"
+                        ,"barrier.png"
+                        ,"beef.png"
+                        ,"beetroot.png"
+                        ,"beetroot_seeds.png"
+                        ,"beetroot_soup.png"
+                        ,"bell.png"
+                        ,"birch_boat.png"
+                        ,"birch_chest_boat.png"
+                        ,"birch_door.png"
+                        ,"birch_hanging_sign.png"
+                        ,"birch_sign.png"
+                        ,"black_candle.png"
+                        ,"black_dye.png"
+                        ,"blade_pottery_sherd.png"
+                        ,"blaze_powder.png"
+                        ,"blaze_rod.png"
+                        ,"blue_candle.png"
+                        ,"blue_dye.png"
+                        ,"bone.png"
+                        ,"bone_meal.png"
+                        ,"book.png"
+                        ,"bow.png"
+                        ,"bow_pulling_0.png"
+                        ,"bowl.png"
+                        ,"bread.png"
+                        ,"brewer_pottery_sherd.png"
+                        ,"brewing_stand.png"
+                        ,"brick.png"
+                        ,"broken_elytra.png"
+                        ,"brown_candle.png"
+                        ,"brown_dye.png"
+                        ,"brush.png"
+                        ,"bucket.png"
+                        ,"burn_pottery_sherd.png"
+                        ,"cake.png"
+                        ,"campfire.png"
+                        ,"candle.png"
+                        ,"carrot.png"
+                        ,"carrot_on_a_stick.png"
+                        ,"cauldron.png"
+                        ,"chain.png"
+                        ,"chainmail_boots.png"
+                        ,"chainmail_chestplate.png"
+                        ,"chainmail_helmet.png"
+                        ,"chainmail_leggings.png"
+                        ,"charcoal.png"
+                        ,"cherry_boat.png"
+                        ,"cherry_chest_boat.png"
+                        ,"cherry_door.png"
+                        ,"cherry_hanging_sign.png"
+                        ,"cherry_sign.png"
+                        ,"chest_minecart.png"
+                        ,"chicken.png"
+                        ,"chorus_fruit.png"
+                        ,"clay_ball.png"
+                        ,"clock_00.png"
+                        ,"coal.png"
+                        ,"coast_armor_trim_smithing_template.png"
+                        ,"cocoa_beans.png"
+                        ,"cod.png"
+                        ,"cod_bucket.png"
+                        ,"comparator.png"
+                        ,"compass_16.png"
+                        ,"cooked_beef.png"
+                        ,"cooked_chicken.png"
+                        ,"cooked_cod.png"
+                        ,"cooked_mutton.png"
+                        ,"cooked_porkchop.png"
+                        ,"cooked_rabbit.png"
+                        ,"cooked_salmon.png"
+                        ,"cookie.png"
+                        ,"copper_ingot.png"
+                        ,"creeper_banner_pattern.png"
+                        ,"crimson_door.png"
+                        ,"crimson_hanging_sign.png"
+                        ,"crimson_sign.png"
+                        ,"crossbow_arrow.png"
+                        ,"crossbow_firework.png"
+                        ,"cyan_candle.png"
+                        ,"cyan_dye.png"
+                        ,"danger_pottery_sherd.png"
+                        ,"dark_oak_boat.png"
+                        ,"dark_oak_chest_boat.png"
+                        ,"dark_oak_door.png"
+                        ,"dark_oak_hanging_sign.png"
+                        ,"dark_oak_sign.png"
+                        ,"diamond.png"
+                        ,"diamond_axe.png"
+                        ,"diamond_boots.png"
+                        ,"diamond_chestplate.png"
+                        ,"diamond_helmet.png"
+                        ,"diamond_hoe.png"
+                        ,"diamond_horse_armor.png"
+                        ,"diamond_leggings.png"
+                        ,"diamond_pickaxe.png"
+                        ,"diamond_shovel.png"
+                        ,"diamond_sword.png"
+                        ,"disc_fragment_5.png"
+                        ,"dragon_breath.png"
+                        ,"dried_kelp.png"
+                        ,"dune_armor_trim_smithing_template.png"
+                        ,"echo_shard.png"
+                        ,"egg.png"
+                        ,"elytra.png"
+                        ,"emerald.png"
+                        ,"enchanted_book.png"
+                        ,"end_crystal.png"
+                        ,"ender_eye.png"
+                        ,"ender_pearl.png"
+                        ,"experience_bottle.png"
+                        ,"explorer_pottery_sherd.png"
+                        ,"eye_armor_trim_smithing_template.png"
+                        ,"feather.png"
+                        ,"fermented_spider_eye.png"
+                        ,"filled_map.png"
+                        ,"fire_charge.png"
+                        ,"firework_rocket.png"
+                        ,"firework_star.png"
+                        ,"fishing_rod.png"
+                        ,"fishing_rod_cast.png"
+                        ,"flint.png"
+                        ,"flint_and_steel.png"
+                        ,"flower_banner_pattern.png"
+                        ,"flower_pot.png"
+                        ,"friend_pottery_sherd.png"
+                        ,"furnace_minecart.png"
+                        ,"ghast_tear.png"
+                        ,"glass_bottle.png"
+                        ,"glistering_melon_slice.png"
+                        ,"globe_banner_pattern.png"
+                        ,"glow_berries.png"
+                        ,"glow_ink_sac.png"
+                        ,"glow_item_frame.png"
+                        ,"glowstone_dust.png"
+                        ,"goat_horn.png"
+                        ,"gold_ingot.png"
+                        ,"gold_nugget.png"
+                        ,"golden_apple.png"
+                        ,"golden_axe.png"
+                        ,"golden_boots.png"
+                        ,"golden_carrot.png"
+                        ,"golden_chestplate.png"
+                        ,"golden_helmet.png"
+                        ,"golden_hoe.png"
+                        ,"golden_horse_armor.png"
+                        ,"golden_leggings.png"
+                        ,"golden_pickaxe.png"
+                        ,"golden_shovel.png"
+                        ,"golden_sword.png"
+                        ,"gray_candle.png"
+                        ,"gray_dye.png"
+                        ,"green_candle.png"
+                        ,"green_dye.png"
+                        ,"gunpowder.png"
+                        ,"heart_of_the_sea.png"
+                        ,"heart_pottery_sherd.png"
+                        ,"heartbreak_pottery_sherd.png"
+                        ,"honey_bottle.png"
+                        ,"honeycomb.png"
+                        ,"hopper.png"
+                        ,"hopper_minecart.png"
+                        ,"host_armor_trim_smithing_template.png"
+                        ,"howl_pottery_sherd.png"
+                        ,"ink_sac.png"
+                        ,"iron_axe.png"
+                        ,"iron_boots.png"
+                        ,"iron_chestplate.png"
+                        ,"iron_door.png"
+                        ,"iron_helmet.png"
+                        ,"iron_hoe.png"
+                        ,"iron_horse_armor.png"
+                        ,"iron_ingot.png"
+                        ,"iron_leggings.png"
+                        ,"iron_nugget.png"
+                        ,"iron_pickaxe.png"
+                        ,"iron_shovel.png"
+                        ,"iron_sword.png"
+                        ,"item_frame.png"
+                        ,"jungle_boat.png"
+                        ,"jungle_chest_boat.png"
+                        ,"jungle_door.png"
+                        ,"jungle_hanging_sign.png"
+                        ,"jungle_sign.png"
+                        ,"kelp.png"
+                        ,"lantern.png"
+                        ,"lapis_lazuli.png"
+                        ,"lava_bucket.png"
+                        ,"lead.png"
+                        ,"leather.png"
+                        ,"leather_horse_armor.png"
+                        ,"light_blue_candle.png"
+                        ,"light_blue_dye.png"
+                        ,"light_gray_candle.png"
+                        ,"light_gray_dye.png"
+                        ,"lime_candle.png"
+                        ,"lime_dye.png"
+                        ,"lingering_potion.png"
+                        ,"magenta_candle.png"
+                        ,"magenta_dye.png"
+                        ,"magma_cream.png"
+                        ,"mangrove_boat.png"
+                        ,"mangrove_chest_boat.png"
+                        ,"mangrove_door.png"
+                        ,"mangrove_hanging_sign.png"
+                        ,"mangrove_propagule.png"
+                        ,"mangrove_sign.png"
+                        ,"map.png"
+                        ,"melon_seeds.png"
+                        ,"melon_slice.png"
+                        ,"milk_bucket.png"
+                        ,"minecart.png"
+                        ,"miner_pottery_sherd.png"
+                        ,"mojang_banner_pattern.png"
+                        ,"mourner_pottery_sherd.png"
+                        ,"mushroom_stew.png"
+                        ,"music_disc_11.png"
+                        ,"music_disc_13.png"
+                        ,"music_disc_5.png"
+                        ,"music_disc_blocks.png"
+                        ,"music_disc_cat.png"
+                        ,"music_disc_chirp.png"
+                        ,"music_disc_far.png"
+                        ,"music_disc_mall.png"
+                        ,"music_disc_mellohi.png"
+                        ,"music_disc_otherside.png"
+                        ,"music_disc_pigstep.png"
+                        ,"music_disc_relic.png"
+                        ,"music_disc_stal.png"
+                        ,"music_disc_strad.png"
+                        ,"music_disc_wait.png"
+                        ,"music_disc_ward.png"
+                        ,"mutton.png"
+                        ,"name_tag.png"
+                        ,"nautilus_shell.png"
+                        ,"nether_brick.png"
+                        ,"nether_star.png"
+                        ,"nether_wart.png"
+                        ,"netherite_axe.png"
+                        ,"netherite_boots.png"
+                        ,"netherite_chestplate.png"
+                        ,"netherite_helmet.png"
+                        ,"netherite_hoe.png"
+                        ,"netherite_ingot.png"
+                        ,"netherite_leggings.png"
+                        ,"netherite_pickaxe.png"
+                        ,"netherite_scrap.png"
+                        ,"netherite_shovel.png"
+                        ,"netherite_sword.png"
+                        ,"netherite_upgrade_smithing_template.png"
+                        ,"oak_boat.png"
+                        ,"oak_chest_boat.png"
+                        ,"oak_door.png"
+                        ,"oak_hanging_sign.png"
+                        ,"oak_sign.png"
+                        ,"orange_candle.png"
+                        ,"orange_dye.png"
+                        ,"painting.png"
+                        ,"paper.png"
+                        ,"phantom_membrane.png"
+                        ,"piglin_banner_pattern.png"
+                        ,"pink_candle.png"
+                        ,"pink_dye.png"
+                        ,"pink_petals.png"
+                        ,"pitcher_plant.png"
+                        ,"pitcher_pod.png"
+                        ,"plenty_pottery_sherd.png"
+                        ,"pointed_dripstone.png"
+                        ,"poisonous_potato.png"
+                        ,"popped_chorus_fruit.png"
+                        ,"porkchop.png"
+                        ,"potato.png"
+                        ,"potion.png"
+                        ,"powder_snow_bucket.png"
+                        ,"prismarine_crystals.png"
+                        ,"prismarine_shard.png"
+                        ,"prize_pottery_sherd.png"
+                        ,"pufferfish.png"
+                        ,"pufferfish_bucket.png"
+                        ,"pumpkin_pie.png"
+                        ,"pumpkin_seeds.png"
+                        ,"purple_candle.png"
+                        ,"purple_dye.png"
+                        ,"quartz.png"
+                        ,"rabbit.png"
+                        ,"rabbit_foot.png"
+                        ,"rabbit_hide.png"
+                        ,"rabbit_stew.png"
+                        ,"raiser_armor_trim_smithing_template.png"
+                        ,"raw_copper.png"
+                        ,"raw_gold.png"
+                        ,"raw_iron.png"
+                        ,"recovery_compass_06.png"
+                        ,"red_candle.png"
+                        ,"red_dye.png"
+                        ,"redstone.png"
+                        ,"repeater.png"
+                        ,"rib_armor_trim_smithing_template.png"
+                        ,"rotten_flesh.png"
+                        ,"saddle.png"
+                        ,"salmon.png"
+                        ,"salmon_bucket.png"
+                        ,"scute.png"
+                        ,"sea_pickle.png"
+                        ,"seagrass.png"
+                        ,"sentry_armor_trim_smithing_template.png"
+                        ,"shaper_armor_trim_smithing_template.png"
+                        ,"sheaf_pottery_sherd.png"
+                        ,"shears.png"
+                        ,"shelter_pottery_sherd.png"
+                        ,"shulker_shell.png"
+                        ,"silence_armor_trim_smithing_template.png"
+                        ,"skull_banner_pattern.png"
+                        ,"skull_pottery_sherd.png"
+                        ,"slime_ball.png"
+                        ,"sniffer_egg.png"
+                        ,"snort_pottery_sherd.png"
+                        ,"snout_armor_trim_smithing_template.png"
+                        ,"snowball.png"
+                        ,"soul_campfire.png"
+                        ,"soul_lantern.png"
+                        ,"spawn_egg.png"
+                        ,"spider_eye.png"
+                        ,"spire_armor_trim_smithing_template.png"
+                        ,"splash_potion.png"
+                        ,"spruce_boat.png"
+                        ,"spruce_chest_boat.png"
+                        ,"spruce_door.png"
+                        ,"spruce_hanging_sign.png"
+                        ,"spruce_sign.png"
+                        ,"spyglass.png"
+                        ,"stick.png"
+                        ,"stone_axe.png"
+                        ,"stone_hoe.png"
+                        ,"stone_pickaxe.png"
+                        ,"stone_shovel.png"
+                        ,"stone_sword.png"
+                        ,"string.png"
+                        ,"sugar.png"
+                        ,"sugar_cane.png"
+                        ,"suspicious_stew.png"
+                        ,"sweet_berries.png"
+                        ,"tadpole_bucket.png"
+                        ,"tide_armor_trim_smithing_template.png"
+                        ,"tipped_arrow_base.png"
+                        ,"tnt_minecart.png"
+                        ,"torchflower_seeds.png"
+                        ,"totem_of_undying.png"
+                        ,"trident.png"
+                        ,"tropical_fish.png"
+                        ,"tropical_fish_bucket.png"
+                        ,"turtle_egg.png"
+                        ,"turtle_helmet.png"
+                        ,"vex_armor_trim_smithing_template.png"
+                        ,"ward_armor_trim_smithing_template.png"
+                        ,"warped_door.png"
+                        ,"warped_fungus_on_a_stick.png"
+                        ,"warped_hanging_sign.png"
+                        ,"warped_sign.png"
+                        ,"water_bucket.png"
+                        ,"wayfinder_armor_trim_smithing_template.png"
+                        ,"wheat.png"
+                        ,"wheat_seeds.png"
+                        ,"white_candle.png"
+                        ,"white_dye.png"
+                        ,"wild_armor_trim_smithing_template.png"
+                        ,"wooden_axe.png"
+                        ,"wooden_hoe.png"
+                        ,"wooden_pickaxe.png"
+                        ,"wooden_shovel.png"
+                        ,"wooden_sword.png"
+                        ,"writable_book.png"
+                        ,"written_book.png"
+                        ,"yellow_candle.png"
+                        ,"yellow_dye.png"];
+
+        function set(){
+            for(let i=0;i<6;i++){
+                for(let j=0;j<6;j++){
+                    while(true){
+                        tmp = intRandom(min, max);
+                        if(!randoms.includes(tmp)){
+                            randoms.push(tmp);
+                            break;
+                        }
+                    }
+                    let p = document.getElementById(i + "/" + j);
+                    p.innerHTML = "<img src='item/" + items_img[tmp] + "' width='60' height='60'>";
+                    if(j == 0){
+                        p.style.left = "10%";
+                    }else if(j == 1){
+                        p.style.left = "25%";
+                    }else if(j == 2){
+                        p.style.left = "40%";
+                    }else if(j == 3){
+                        p.style.left = "55%";
+                    }else if(j == 4){
+                        p.style.left = "70%";
+                    }else if(j == 5){
+                        p.style.left = "85%";
+                    }
+                }
+            }
+        }
+
+        function item_get(id){
+            document.getElementById(id).innerHTML += '✅';
+        }
+
+        function intRandom(min, max){
+            return Math.floor( Math.random() * (max - min + 1));
+        }
+    </script>
+    </body>
+</html>
