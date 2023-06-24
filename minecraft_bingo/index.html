@@ -38,7 +38,7 @@
     <body onload="set()">
         <div class="container">
             <!--<img src="container_design.png" width="400" height="560">-->
-            <div class="overlay">
+            <div class="overlay" id="overlay">
                 <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/0')" id="0/0"></button>
                 <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/1')" id="0/1"></button>
                 <button style="position: absolute; background: none; border: none; top: 26%; transform: translate(-50%, -50%);" onclick="item_get('0/2')" id="0/2"></button>
@@ -82,8 +82,9 @@
                 <button style="position: absolute; background: none; border: none; top: 76%; transform: translate(-50%, -50%);" onclick="item_get('5/5')" id="5/5"></button>
             </div>
         </div>
+        <button onclick="set_gold()">300円マス追加!</button>
     <script>
-        let min = 1, max = 393, randoms = [], tmp;
+        let min = 1, max = 393, tmp, randoms = [], gold = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]], tmp_i, tmp_j, id_top, id_left;
 
         let items_img = ["acacia_boat.png"
                         ,"acacia_chest_boat.png"
@@ -508,12 +509,41 @@
             }
         }
 
+        function set_gold(){
+            if(isFilledWithSameValue(gold, 1) == false){
+                while(true){
+                    tmp_i = intRandom(min, 6);
+                    tmp_j = intRandom(min, 6);
+                    if(gold[tmp_i][tmp_j] != 1){
+                        gold[tmp_i][tmp_j] = 1;
+                        break;
+                    }
+                }
+                id_top = parseInt(document.getElementById(tmp_i + "/" + tmp_j).style.top, 10);
+                id_left = parseInt(document.getElementById(tmp_i + "/" + tmp_j).style.left, 10);
+
+                document.getElementById("overlay").innerHTML += '<img style="position: absolute; background: none; border: none; top: ' + id_top + '%; left: ' + id_left + '%; transform: translate(-50%, -50%); z-index: -1;" src="gold.jpg" width="50" height="50">'
+            }else{
+                alert("全て300円コマになったよ!高評価3600貰えたのかな?");
+            }
+        }
+
         function item_get(id){
             document.getElementById(id).innerHTML += '✅';
         }
 
         function intRandom(min, max){
             return Math.floor( Math.random() * (max - min + 1));
+        }
+        function isFilledWithSameValue(arr, targetValue) {
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr[i].length; j++) {
+                    if (arr[i][j] !== targetValue) {
+                        return false; // 異なる値が見つかった場合、falseを返す
+                    }
+                }
+            }
+            return true; // 全ての要素が同じ値で埋まっている場合、trueを返す
         }
     </script>
     </body>
