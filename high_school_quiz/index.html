@@ -40,25 +40,40 @@
 
 
         <div class="bodys">
-            <button id="show-button">数学の問題リンク</button>
+            <button id="math-show-button">数学の問題リンク</button>
             <div id="math_sentence" class="link_s">
                 <a href="https://funny-games.github.io/high_school_quiz/Math/1/chapter2/section2/word_1.html" style="color: blue;">第二章 2.命題と条件 単語1</a><br>
                 <a href="https://funny-games.github.io/high_school_quiz/Math/1/chapter2/section2/word_2.html" style="color: blue;">第二章 2.命題と条件 単語2</a><br>
                 <a href="https://funny-games.github.io/high_school_quiz/Math/1/chapter2/section2/quiz.html" style="color: blue;">第二章 2.命題と条件 問題</a><br>
+            </div>
+            <button id="physics-show-button">物理の問題リンク</button>
+            <div id="physics_sentence" class="link_s">
+                <a href="https://funny-games.github.io/high_school_quiz/Physics/Basic/1/1/formula.html" style="color: blue;">基礎 第一章 運動の表し方 公式</a><br>
             </div>
         </div>
 
 
         <script type="text/javascript">
             let math = false;
+            let physics = false;
 
-            document.getElementById("show-button").addEventListener("click", function() {
+            document.getElementById("math-show-button").addEventListener("click", function() {
                 const hiddenText = document.getElementById("math_sentence");
-                if(math){
+                if(math || physics){
                     math = false;
                     hiddenText.style.display = "none";
                 }else{
                     math = true
+                    hiddenText.style.display = "block";
+                }
+            });
+            document.getElementById("physics-show-button").addEventListener("click", function() {
+                const hiddenText = document.getElementById("physics_sentence");
+                if(physics || math){
+                    physics = false;
+                    hiddenText.style.display = "none";
+                }else{
+                    physics = true
                     hiddenText.style.display = "block";
                 }
             });
