@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>物理基礎 第一章 第一節 運動の表し方
+        </title>
+        <link href="/high_school_quiz/quiz.css" rel="stylesheet" type="text/css" media="all">
+        <script>
+            let data = new Array();
+            let count;
+            let n; // 問題数    ←
+            let used = 0; // やった問題数
+            let b_situ = false; //false = 答えの確定, true = 次の問題へ
+
+            function set_quiz(){
+                b_situ = false;
+                n = data.length - 1;
+                document.getElementById("b").textContent = "確定";
+                document.getElementById("a").value = "";
+                document.getElementById("text").innerText = "";
+                document.getElementById("result").innerHTML = "";
+                count = Math.floor( Math.random() * n ) + 1;
+                if(used == n){
+                    end_quiz();
+                }else if(data[count][2] != "t"){
+                    set_quiz();
+                }else{
+                    document.getElementById("q").innerHTML = (used+1) + "/" + n + ": " +data[count][0];
+                    if(data[count][4] == "text"){
+                        document.getElementById("a").inputMode = "text";
+                    }else if(data[count][4] == "num"){
+                        document.getElementById("a").inputMode = "numeric";
+                    }
+                    used += 1;
+                }
+            }
+
+            function judge(){
+                b_situ = true;
+                if(used == n){
+                    document.getElementById("a").disabled = true;
+                    document.getElementById("b").textContent = "結果表示";
+                }else{
+                    document.getElementById("b").textContent = "次の問題へ";
+                }
+
+                let an;
+                an = document.getElementById("a").value; //       ↓
+                if(an == data[count][1]){
+                    data[count][2] = "o"; 
+                    data[count][3] = an;
+                    document.getElementById("text").innerText = "正解";
+                }else{
+                    data[count][2] = "x"; 
+                    data[count][3] = an;
+                    document.getElementById("text").innerText = "不正解";
+                    document.getElementById("result").innerHTML = "<h1>答え: " + data[count][1] + "</h1>";
+                }
+            }
+
+            function end_quiz(){
+                used += 1;
+
+                document.getElementById("result").innerHTML += "<tr><th>番号</th><th>問題</th><th>o/x</th><th>正解</th><th>解答</th>";
+
+                for(let i=1;i<=n;i++){
+                    document.getElementById("result").innerHTML += "<td>" + i + ":</td>" + "<td>" + data[i][0] + "</td>" + "<td>" + data[i][2] + "</td>" + "<td>" + data[i][1] + "</td>" + "<td>" + data[i][3] + "</td>";
+                }
+
+                document.getElementById("result").innerHTML += "</tr>";
+                
+                document.getElementById("q").textContent = "END";
+
+                document.getElementById("b").textContent = "もう一度挑戦する";
+            }
+
+            function reset(){
+                document.getElementById("result").innerHTML = "";
+                count = 0;
+                used = 0;
+                // <span style='text-decoration:overline;'>P</span>
+                data[1] = ["等速直線運動", "x=vt", "t", "N/A", "text"];
+                data[2] = ["等加速度直線運動 v", "v=v_0+at", "t", "N/A", "text"];
+                data[3] = ["等加速度直線運動 x", "x=v_0t+1/2at^2", "t", "N/A", "text"];
+                data[4] = ["等加速度直線運動 tを消去", "v^2-v_0^2=2ax", "t", "N/A", "text"];
+                data[5] = ["自由落下 v", "v=gt", "t", "N/A", "text"];
+                data[6] = ["自由落下 y", "y=1/2gt^2", "t", "N/A", "text"];
+                data[7] = ["自由落下 tを消去", "v^2=2gy", "t", "N/A", "text"];
+                data[8] = ["鉛直投げ下ろし v", "v=v_0+gt", "t", "N/A", "text"];
+                data[9] = ["鉛直投げ下ろし y", "y=v_0t+1/2gt^2", "t", "N/A", "text"];
+                data[10] = ["鉛直投げ下ろし tを消去", "v^2-v_0^2=2gy", "t", "N/A", "text"];
+                data[11] = ["鉛直投げ上げ v", "v=v_0-gt", "t", "N/A", "text"];
+                data[12] = ["鉛直投げ上げ y", "y=v_0t-1/2gt^2", "t", "N/A", "text"];
+                data[13] = ["鉛直投げ上げ tを消去", "v^2-v_0^2=-2gy", "t", "N/A", "text"];
+                document.getElementById("a").disabled = false;
+                set_quiz();
+            }
+
+            function button_process(){
+                if(b_situ){
+                    set_quiz();
+                }else{
+                    if(used > n){
+                        reset();
+                    }else{
+                        judge();
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload="reset()">
+
+        <h1 class="title">運動の表し方 公式</h1> <!--タイトル-->
+
+
+        <p><a href="https://funny-games.github.io/high_school_quiz/index.html">ホームへ</a></p>
+        <p>ver. 1.0</p>
+
+
+        <h2 id="q">問題</h2> <!--問題-->
+
+        <br>
+
+        <input id="a" inputmode="numeric"> <!--フォーム-->
+
+
+        <button onclick="button_process()" id="b"></button> <!--ボタン-->
+
+
+        <h1 id="text" class="text"></h1> <!--正解かどうか-->
+
+        <br>
+
+        <table id="result"></table> <!--成績-->
+
+        <p>※注意: 入力の仕方! xの二乗はx^2、二分の一は1/2、v0(添字)はv_0</p>
+
+    </body>
+</html>
