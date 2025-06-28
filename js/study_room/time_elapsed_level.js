@@ -2,7 +2,7 @@ let prog = document.getElementById("progress");
 let set_level, bar_max;
 
 function level_set(){
-    set_level = document.getElementById("goal_level").value;
+    set_level = Number(document.getElementById("goal_level").value);
 
     localStorage.setItem("goal",JSON.stringify(set_level));
 
@@ -50,14 +50,14 @@ function progression(){
         document.getElementById("goal_label").innerText = "";
     }
 
-    setTimeout("progression()",100);
+    setTimeout(progression,100);
 }
 
 function setData_time_elapsed_level(){
     var cdata_goal_time = localStorage.getItem("goal");
 
     if(cdata_goal_time != null){
-        set_level = JSON.parse(cdata_goal_time);
+        set_level = Number(JSON.parse(cdata_goal_time));
     }
 
     document.getElementById("goal_level").value = set_level;

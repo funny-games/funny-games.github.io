@@ -1,4 +1,4 @@
-var save_data = new Array(0, 0);
+var save_data = [0, 0, 0, 0]; //level totalTime dailyLimit maxLevel
 var today = new Date();
 var stop = 0;
 var x = 0;
@@ -26,6 +26,7 @@ async function sound() {
     } document.getElementById("level").value = save_data[0];
     document.getElementById("time").value = save_data[1];
     document.getElementById("dailytime").value = save_data[2];
+    document.getElementById("max_level_text").innerText = save_data[3];
 } function timer_stop() {
     stop = 1;
     x = 0;
@@ -36,21 +37,23 @@ async function sound() {
     let nextLevel = level;
 
     if (level < 10) {
-        nextLevel = Math.floor(time / 10);
+        nextLevel = Math.floor(time / 10) + 1;
     } else if (level < 50) {
-        nextLevel = 10 + Math.floor((time - 10) / 120);
+        nextLevel = 10 + Math.floor((time - 10) / 120) + 1;
     } else if (level < 100) {
-        nextLevel = 50 + Math.floor((time - 50 * 120) / 600);
+        nextLevel = 50 + Math.floor((time - 50 * 120) / 600) + 1;
     } else if (level < 500) {
-        nextLevel = 100 + Math.floor((time - 100 * 600) / 3600);
+        nextLevel = 100 + Math.floor((time - 100 * 600) / 3600) + 1;
     } else if (level < 1000) {
-        nextLevel = 500 + Math.floor((time - 500 * 3600) / 21600);
+        nextLevel = 500 + Math.floor((time - 500 * 3600) / 21600) + 1;
     } else {
         nextLevel += 0.5 * Math.floor(time / 43200);
     }
 
     save_data[0] = Math.max(save_data[0], nextLevel);
     document.getElementById("level").value = save_data[0];
+    save_data[3] = Math.max(save_data[3], save_data[0]);
+    document.getElementById("max_level_text").innerText = save_data[3];
 } async function timer_start() {
     stop = 0;
     x += 1;
@@ -78,8 +81,7 @@ async function sound() {
 function reset_timer() {
     let check = confirm('リセットしますか？');
     if (check == true) {
-        save_data[0] = 1;
-        save_data[1] = 0;
+        save_data = [1, 0, save_data[2], save_data[3]];
         localStorage.setItem("clear", JSON.stringify(save_data));
         stop = 0;
         setData_count_up();
