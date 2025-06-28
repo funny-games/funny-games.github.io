@@ -30,19 +30,27 @@ async function sound() {
     stop = 1;
     x = 0;
 } function level_up() {
-    if (save_data[0] < 10 && save_data[1] % 10 == 0) {
-        save_data[0] += 1;
-    } else if (save_data[0] < 50 && save_data[1] % 120 == 0) {
-        save_data[0] += 1;
-    } else if (save_data[0] < 100 && save_data[1] % 600 == 0) {
-        save_data[0] += 1;
-    } else if (save_data[0] < 500 && save_data[1] % 3600 == 0) {
-        save_data[0] += 1;
-    } else if (save_data[0] < 1000 && save_data[1] % 21600 == 0) {
-        save_data[0] += 1;
-    } else if (save_data[1] % 43200 == 0) {
-        save_data[0] += 0.5;
-    } document.getElementById("level").value = save_data[0];
+    const level = save_data[0];
+    const time = save_data[1];
+
+    let nextLevel = level;
+
+    if (level < 10) {
+        nextLevel = Math.floor(time / 10);
+    } else if (level < 50) {
+        nextLevel = 10 + Math.floor((time - 10) / 120);
+    } else if (level < 100) {
+        nextLevel = 50 + Math.floor((time - 50 * 120) / 600);
+    } else if (level < 500) {
+        nextLevel = 100 + Math.floor((time - 100 * 600) / 3600);
+    } else if (level < 1000) {
+        nextLevel = 500 + Math.floor((time - 500 * 3600) / 21600);
+    } else {
+        nextLevel += 0.5 * Math.floor(time / 43200);
+    }
+
+    save_data[0] = Math.max(save_data[0], nextLevel);
+    document.getElementById("level").value = save_data[0];
 } async function timer_start() {
     stop = 0;
     x += 1;
