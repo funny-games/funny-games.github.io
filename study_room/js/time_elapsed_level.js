@@ -10,7 +10,7 @@ function level_set(){
 }
 
 function progression(){
-    prog.value = save_data[1] + (getTimeToLevel(set_level) - getTimeToLevel(save_data[0])) + getTimeToLevel(save_data[0]);
+    prog.value = save_data[1] + getTimeToLevel(save_data[0]);
 
     prog.max = bar_max;
 

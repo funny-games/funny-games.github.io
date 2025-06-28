@@ -72,14 +72,15 @@
                 transform: translate(-50%, -50%);
             }
             .explain{
-                height: 6em;
-                position: relative;
-                margin: 0;
                 position: absolute;
-                top: 85%;
+                justify-content: center;
+                top: 115%;
                 left: 50%;
                 margin-right: -50%;
                 transform: translate(-50%, -50%);
+                width: 90vw;   /* 画面の幅の90% */
+                height: 50vh;  /* 画面の高さの50% */
+                max-height: 600px;
             }
             .test{
                 height: 10em;
@@ -93,19 +94,21 @@
             }
         </style>
         <link rel="shortcut icon" href="../png/funny_games_icon.png">
+        <script src="./sql/sql-wasm.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
-    <body onload="setData_count_up();setData_memo();setData_time_elapsed_level()">
+    <body onload="setData_count_up();setData_memo();setData_time_elapsed_level();initializeApp();drawChartFromSQL();">
         <!--カウントアップタイマー-->
         <div class="leveltime">
             <input type="button" id="start" value=" スタート/ストップ " onclick="timer_start()">
             <input type="button" id="reset" value=" リセットする " onclick="reset_timer()">
             <br>
-            <p>level (Max: <span id="max_level_text"></span>)</p><input type="button" id="level" value="">
+            <p>level (Max: <span id="max_level_text"></span>) クリックで推移</p><input type="button" id="level" value="" onclick="drawChartFromSQL()">
+            <p>EXP</p><input type="button" id="exp" value="">
             <p>study time</p><input type="button" id="time" value="">
             <p>daily time</p><input type="button" id="dailytime" value="">
             <br>
             <br>
-            <script src="/js/study_room/count_up.js"></script>
         </div>
         <iframe class="music" src="https://funny-games.github.io/study_room/music/"></iframe>
         <!--メモ-->
@@ -116,12 +119,10 @@
             <br>
             <button onclick="save_memo_data()">メモを保存する</button>
             <button onclick="reset_memo()">メモを削除する</button>
-            <script src="/js/study_room/memo.js"></script>
         </div>
         <!--時間-->
         <div class="time">
             <h1 id="text"></h1>
-            <script src="/js/study_room/time.js"></script>
         </div>
         <!--時間経過で進む-->
         <div class="time_elapsed_level">
@@ -132,24 +133,130 @@
             <input type="text" id="goal_level" value="0">
             <button id="set_level" onclick="level_set()">設定する</button>
             <h1 id="goal_label"></h1>
-            <script src="/js/study_room/time_elapsed_level.js"></script>
             <br>
         </div>
         <div class="explain">
-            <p>Lv 0〜9 は10秒ごとに+1</p>
+            <canvas id="levelChart" width="600" height="300" style="justify-content: center;"></canvas>
+            <script>
+                let chartInstance = null;
 
-            <p>Lv 10〜49 は120秒ごとに+1</p>
+                function drawChartFromSQL() {
+                    if (!window.db) {
+                        console.log("DB未初期化！");
+                        return;
+                    }
 
-            <p>Lv 50〜99 は600秒ごとに+1</p>
+                    const res = window.db.exec(`
+                        SELECT date, MAX(level) as level
+                        FROM log
+                        GROUP BY date
+                        ORDER BY date ASC;
+                    `);
 
-            <p>Lv 100〜499 は3600秒ごとに+1</p>
+                    if (res.length === 0) {
+                        console.log("📭 データがまだないよ！");
+                        return;
+                    }
 
-            <p>Lv 500〜999 は21600秒ごとに+1</p>
+                    if (chartInstance) {
+                        chartInstance.destroy();
+                    }
 
-            Lv1000〜は43200秒（12時間）ごとに+0.5
+                    const dates = res[0].values.map(row => row[0]);
+                    const levels = res[0].values.map(row => row[1]);
+
+                    const ctx = document.getElementById("levelChart").getContext("2d");
+
+                    chartInstance = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: dates,
+                            datasets: [{
+                                label: '📈 レベルの推移（MAX/日）',
+                                data: levels,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 2,
+                                fill: false,
+                                tension: 0.2,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Level'
+                                    }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Date'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }     
+            </script>
         </div>
+        <script>
+            let SQL, db;
+
+            async function initializeApp() {
+                // SQL.jsの初期化
+                SQL = await initSqlJs({
+                    locateFile: file => "./sql/" + file
+                });
+
+                const request = indexedDB.open("MyStudyDB", 1);
+
+                request.onupgradeneeded = function(event) {
+                    const dbStorage = event.target.result;
+                    // ✅ ストアがなければここで作る！
+                    if (!dbStorage.objectStoreNames.contains("databases")) {
+                        dbStorage.createObjectStore("databases");
+                        console.log("🆕 オブジェクトストアを作成したよ！");
+                    }
+                };
+
+                request.onsuccess = function(event) {
+                    const dbStorage = event.target.result;
+                    const transaction = dbStorage.transaction("databases", "readonly");
+                    const store = transaction.objectStore("databases");
+
+                    const getRequest = store.get("main");
+                    getRequest.onsuccess = function() {
+                        if (getRequest.result) {
+                            db = new SQL.Database(getRequest.result);
+                            console.log("📂 IndexedDBからデータを読み込んだよ！");
+                        } else {
+                            db = new SQL.Database();
+                            console.log("📦 データがなかったので新規作成！");
+                        }
+                        window.db = db;  // 他のスクリプトでも使えるように
+                        console.log("✅ DB初期化完了して window.db に設定したよ！");
+                    };
+                };
+
+                request.onerror = function() {
+                    console.error("❌ IndexedDBの読み込みに失敗！");
+                    db = new SQL.Database();
+                    window.db = db;  // 他のスクリプトでも使えるように
+                };
+
+                console.log("✅ DB初期化成功！");
+            }
+        </script>
+        <script src="./js/count_up.js"></script>
+        <script src="./js/memo.js"></script>
+        <script src="./js/time.js"></script>
+        <script src="./js/time_elapsed_level.js"></script>
     </body>
     <footer>
-        <p>ver. 0.5.5</p>
+        <p>ver. 0.6</p>
     </footer>
 </html>
