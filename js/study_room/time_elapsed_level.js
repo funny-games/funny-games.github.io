@@ -18,22 +18,22 @@ function level_set(){
         }
     }else if(50 < set_level && set_level <= 100){
         bar_max = 4800;
-        for(let i=0;i<set_level-50;i++){
+        for(let i=1;i<set_level-50;i++){
             bar_max += 600;
         }
     }else if(100 < set_level && set_level <= 500){
         bar_max = 34800;
-        for(let i=0;i<set_level-100;i++){
+        for(let i=1;i<set_level-100;i++){
             bar_max += 3600;
         }
     }else if(500 < set_level && set_level <= 1000){
         bar_max = 1474800;
-        for(let i=0;i<set_level-500;i++){
+        for(let i=1;i<set_level-500;i++){
             bar_max += 21600;
         }
     }else{
         bar_max = 12274800;
-        for(let i=0;i<set_level-1000;i++){
+        for(let i=1;i<set_level-1000;i++){
             bar_max += 86400;
         }
     }
