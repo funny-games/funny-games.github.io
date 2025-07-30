@@ -96,6 +96,8 @@
         <link rel="shortcut icon" href="../png/funny_games_icon.png">
         <script src="./sql/sql-wasm.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
     </head>
     <body onload="setData_count_up();setData_memo();setData_time_elapsed_level();initializeApp();drawChartFromSQL();">
         <!--カウントアップタイマー-->
@@ -192,9 +194,12 @@
                                     }
                                 },
                                 x: {
-                                    title: {
-                                        display: true,
-                                        text: 'Date'
+                                    type: 'time',
+                                    time: {
+                                        unit: 'day',
+                                        displayFormats: {
+                                            day: 'MM/DD'
+                                        }
                                     }
                                 }
                             }
