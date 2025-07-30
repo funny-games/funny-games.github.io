@@ -144,9 +144,9 @@ function check_inactive_days() {
 
         if (diffDays > 1) {
             const decayRate = 0.01; // 1%ずつ
-            const lostExp = Math.floor(save_data[1] * decayRate * diffDays);
-            save_data[1] = Math.max(0, save_data[1] - lostExp);
-            console.log(`経験値が${lostExp}減少（${diffDays}日間）`);
+            const lostExp = Math.floor(save_data[0] * decayRate * diffDays);
+            save_data[0] = Math.max(0, save_data[0] - lostExp);
+            console.log(`レベルが${lostExp}減少（${diffDays}日間）`);
         }
     }
 
