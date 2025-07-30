@@ -135,7 +135,7 @@ function saveLevelToSQL(level) {
 function check_inactive_days() {
     const lastActive = localStorage.getItem("last_active");
     const today = new Date().toISOString().split('T')[0];
-    
+    console.log("チェックしたよ");
 
     if (lastActive) {
         const last = new Date(lastActive);
